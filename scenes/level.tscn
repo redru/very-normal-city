@@ -1,0 +1,194 @@
+[gd_scene load_steps=11 format=3 uid="uid://bg6nf8s5nx5d7"]
+
+[ext_resource type="Shader" uid="uid://btayajbe2sh02" path="res://shaders/sky_shader.gdshader" id="1_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://bheb846g3o23h" path="res://assets/kenney_city-kit-roads/road-curve.glb" id="3_mx8sn"]
+[ext_resource type="Script" uid="uid://brkel3ld2c5vn" path="res://scripts/directional_light_3d.gd" id="3_w8frs"]
+[ext_resource type="PackedScene" uid="uid://hxcv1vxg0h3n" path="res://assets/kenney_city-kit-roads/road-straight.glb" id="4_mx8sn"]
+[ext_resource type="PackedScene" uid="uid://bs6hif4xifcr7" path="res://assets/kenney_city-kit-roads/tile-low.glb" id="6_2r41h"]
+[ext_resource type="PackedScene" uid="uid://cw12tqtbhq63r" path="res://scenes/characters/player.tscn" id="6_klq6b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w8frs"]
+shader = ExtResource("1_w7c3h")
+shader_parameter/rayleigh_strength = 1.0
+shader_parameter/mie_strength = 1.0
+shader_parameter/ozone_strength = 1.0
+shader_parameter/atmosphere_density = 1.0
+shader_parameter/exposure = 10.0
+shader_parameter/sun_disc_feather = 0.1
+shader_parameter/sundisc_intensity = 10.0
+shader_parameter/use_debanding = true
+
+[sub_resource type="Sky" id="Sky_2q6dc"]
+sky_material = SubResource("ShaderMaterial_w8frs")
+
+[sub_resource type="Environment" id="Environment_2q6dc"]
+background_mode = 2
+background_color = Color(0.4, 0, 0, 0.0784314)
+sky = SubResource("Sky_2q6dc")
+glow_enabled = true
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_w7c3h"]
+
+[node name="Root" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2q6dc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.830984, 0.556296, 0, -0.556296, 0.830984, 0, 175.711, 210.897)
+script = ExtResource("3_w8frs")
+
+[node name="BottomBoundary" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BottomBoundary"]
+shape = SubResource("WorldBoundaryShape3D_w7c3h")
+
+[node name="City" type="Node3D" parent="."]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 0, 0, 0)
+
+[node name="Roads" type="Node3D" parent="City"]
+
+[node name="road-straight-1" parent="City/Roads" instance=ExtResource("4_mx8sn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="road-straight-2" parent="City/Roads" instance=ExtResource("4_mx8sn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -1)
+
+[node name="road-straight-3" parent="City/Roads" instance=ExtResource("4_mx8sn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -2)
+
+[node name="road-straight-4" parent="City/Roads" instance=ExtResource("4_mx8sn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -3)
+
+[node name="road-straight-5" parent="City/Roads" instance=ExtResource("4_mx8sn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -4)
+
+[node name="road-straight-6" parent="City/Roads" instance=ExtResource("4_mx8sn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -5)
+
+[node name="road-straight-8" parent="City/Roads" instance=ExtResource("4_mx8sn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -7)
+
+[node name="road-straight-9" parent="City/Roads" instance=ExtResource("4_mx8sn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -7)
+
+[node name="road-straight-10" parent="City/Roads" instance=ExtResource("4_mx8sn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -7)
+
+[node name="road-straight-7" parent="City/Roads" instance=ExtResource("4_mx8sn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+
+[node name="road-straight-11" parent="City/Roads" instance=ExtResource("4_mx8sn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 2)
+
+[node name="road-straight-12" parent="City/Roads" instance=ExtResource("4_mx8sn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
+
+[node name="road-curve-1" parent="City/Roads" instance=ExtResource("3_mx8sn")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.5, 0, 1.5)
+
+[node name="road-curve-2" parent="City/Roads" instance=ExtResource("3_mx8sn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -6.5)
+
+[node name="Ground" type="Node3D" parent="City"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0102199, 0)
+
+[node name="tile-low-2" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="tile-low-3" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+
+[node name="tile-low-4" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2)
+
+[node name="tile-low-5" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
+
+[node name="tile-low-6" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -4)
+
+[node name="tile-low-7" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -5)
+
+[node name="tile-low-8" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -6)
+
+[node name="tile-low-9" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+
+[node name="tile-low-10" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="tile-low-11" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1)
+
+[node name="tile-low-12" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
+
+[node name="tile-low-13" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3)
+
+[node name="tile-low-14" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
+
+[node name="tile-low-15" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -5)
+
+[node name="tile-low-16" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1)
+
+[node name="tile-low-17" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -6)
+
+[node name="tile-low-18" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+
+[node name="tile-low-19" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
+
+[node name="tile-low-20" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2)
+
+[node name="tile-low-21" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+
+[node name="tile-low-22" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -4)
+
+[node name="tile-low-23" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -5)
+
+[node name="tile-low-24" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 1)
+
+[node name="tile-low-25" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -6)
+
+[node name="tile-low-26" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="tile-low-27" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -1)
+
+[node name="tile-low-28" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2)
+
+[node name="tile-low-29" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3)
+
+[node name="tile-low-30" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="tile-low-31" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -5)
+
+[node name="tile-low-32" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 1)
+
+[node name="tile-low-33" parent="City/Ground" instance=ExtResource("6_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -6)
+
+[node name="Player" parent="." instance=ExtResource("6_klq6b")]
+transform = Transform3D(-0.085243, 0, 0.99636, 0, 1, 0, -0.99636, 0, -0.085243, -1, 0.335762, -2)
