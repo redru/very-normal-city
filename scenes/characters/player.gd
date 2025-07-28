@@ -6,6 +6,7 @@ extends CharacterBody3D
 @export var rotation_speed = 2.0
 @export var movement_speed = 2.0
 @export var jump_force = 4.0
+@export var gravity_scale = 1.2
 
 func _ready():
 	pass
@@ -36,7 +37,7 @@ func _physics_process(delta: float):
 		else:
 			velocity.y = 0.0
 	else:
-		velocity.y = clampf(velocity.y - 9.8 * delta, -9.8, 1000.0)
+		velocity.y = clampf(velocity.y - 9.8 * gravity_scale * delta, -9.8, 1000.0)
 
 	# Apply movement
 	velocity = Vector3(movement_velocity.x, velocity.y, movement_velocity.z)
