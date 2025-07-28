@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bg6nf8s5nx5d7"]
+[gd_scene load_steps=10 format=3 uid="uid://bg6nf8s5nx5d7"]
 
 [ext_resource type="Shader" uid="uid://btayajbe2sh02" path="res://shaders/sky_shader.gdshader" id="1_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://bheb846g3o23h" path="res://assets/kenney_city-kit-roads/road-curve.glb" id="3_mx8sn"]
@@ -27,8 +27,6 @@ background_color = Color(0.4, 0, 0, 0.0784314)
 sky = SubResource("Sky_2q6dc")
 glow_enabled = true
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_w7c3h"]
-
 [node name="Root" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -37,12 +35,6 @@ environment = SubResource("Environment_2q6dc")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.830984, 0.556296, 0, -0.556296, 0.830984, 0, 175.711, 210.897)
 script = ExtResource("3_w8frs")
-
-[node name="BottomBoundary" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BottomBoundary"]
-shape = SubResource("WorldBoundaryShape3D_w7c3h")
 
 [node name="City" type="Node3D" parent="."]
 transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 0, 0, 0)
@@ -191,4 +183,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -6)
 
 [node name="Player" parent="." instance=ExtResource("6_klq6b")]
-transform = Transform3D(-0.085243, 0, 0.99636, 0, 1, 0, -0.99636, 0, -0.085243, -1, 0.335762, -2)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0.335762, -2)
