@@ -41,10 +41,13 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.5
 script = ExtResource("3_atpat")
 
 [node name="Skeleton3D" parent="character-male-a" index="0"]
-bones/3/rotation = Quaternion(0.00190164, 0, 0, 0.999998)
-bones/4/rotation = Quaternion(0, 0, -0.379295, 0.925276)
-bones/5/rotation = Quaternion(0, 0, 0.379295, 0.925276)
-bones/6/rotation = Quaternion(0, -0.00190164, 0, 0.999998)
+bones/3/rotation = Quaternion(-0.033379, 0, 0, 0.999443)
+bones/4/rotation = Quaternion(0, 0, -0.288388, 0.957514)
+bones/5/rotation = Quaternion(0, 0, 0.288388, 0.957514)
+bones/6/rotation = Quaternion(0, 0.033379, 0, 0.999443)
+
+[node name="head-mesh" parent="character-male-a/Skeleton3D" index="1"]
+visible = false
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="4"]
 tree_root = SubResource("AnimationNodeBlendTree_6eyoc")
