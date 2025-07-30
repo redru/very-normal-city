@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://ww50x2hyyr6g"]
+
+[ext_resource type="Script" uid="uid://dsb605xu2uj2i" path="res://scenes/training_area/training_area.gd" id="1_5guir"]
+[ext_resource type="Shader" uid="uid://daw1ip13qpl24" path="res://scenes/training_area/training_area.gdshader" id="2_jqqnj"]
+[ext_resource type="PackedScene" uid="uid://d0ouuii7qc513" path="res://assets/kenney_prototype-kit/indicator-special-lines.glb" id="3_nvy62"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5guir"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5guir"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rvii1"]
+render_priority = 0
+shader = ExtResource("2_jqqnj")
+shader_parameter/border_width = 0.15
+shader_parameter/blink_speed = 0.5
+shader_parameter/border_color = Color(0, 0.5, 1, 1)
+shader_parameter/border_intensity = 2.0
+
+[node name="TrainingArea" type="Area3D"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_5guir")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
+shape = SubResource("BoxShape3D_5guir")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_5guir")
+surface_material_override/0 = SubResource("ShaderMaterial_rvii1")
+
+[node name="indicator-special-lines2" parent="." instance=ExtResource("3_nvy62")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -28,6 +28,8 @@ nodes/output/position = Vector2(800, 20)
 node_connections = [&"blend", 0, &"Idle", &"blend", 1, &"Walk", &"output", 0, &"blend"]
 
 [node name="Player" instance=ExtResource("1_rp718")]
+collision_layer = 2
+collision_mask = 257
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("2_yewv4")
@@ -41,10 +43,10 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.5
 script = ExtResource("3_atpat")
 
 [node name="Skeleton3D" parent="character-male-a" index="0"]
-bones/3/rotation = Quaternion(0.0109671, 0, 0, 0.99994)
-bones/4/rotation = Quaternion(0, 0, -0.352084, 0.935968)
-bones/5/rotation = Quaternion(0, 0, 0.352084, 0.935968)
-bones/6/rotation = Quaternion(0, -0.0109671, 0, 0.99994)
+bones/3/rotation = Quaternion(0.00102139, 0, 0, 0.999999)
+bones/4/rotation = Quaternion(0, 0, -0.379851, 0.925048)
+bones/5/rotation = Quaternion(0, 0, 0.379851, 0.925048)
+bones/6/rotation = Quaternion(0, -0.00102139, 0, 0.999999)
 
 [node name="head-mesh" parent="character-male-a/Skeleton3D" index="1"]
 visible = false
