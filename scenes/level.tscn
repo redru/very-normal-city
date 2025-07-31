@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bs6hif4xifcr7" path="res://assets/kenney_city-kit-roads/tile-low.glb" id="6_2r41h"]
 [ext_resource type="PackedScene" uid="uid://d4fcuok7ile76" path="res://assets/kenney_city-kit-suburban_20/building-type-a.glb" id="6_b121j"]
 [ext_resource type="PackedScene" uid="uid://cw12tqtbhq63r" path="res://scenes/characters/player.tscn" id="6_klq6b"]
-[ext_resource type="PackedScene" uid="uid://ww50x2hyyr6g" path="res://scenes/training_area/training_area.tscn" id="7_klq6b"]
+[ext_resource type="PackedScene" uid="uid://ww50x2hyyr6g" path="res://scenes/quest_walk_marker/quest_walk_marker.tscn" id="7_klq6b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w8frs"]
 shader = ExtResource("1_w7c3h")
@@ -296,8 +296,12 @@ transform = Transform3D(2, 0, 0, 0, 5, 0, 0, 0, 2, -2.07216, 0.00977937, -4.9438
 
 [node name="Player" parent="." instance=ExtResource("6_klq6b")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.86581, 0.0214398, -1.60891)
+floor_stop_on_slope = false
+rotation_speed = 2.5
 
 [node name="QuestPlaces" type="Node3D" parent="."]
 
-[node name="TrainingArea" parent="QuestPlaces" instance=ExtResource("7_klq6b")]
+[node name="Quest_0_0" parent="QuestPlaces" instance=ExtResource("7_klq6b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.96157, 0.0249192, 5.0027)
+quest_id = 0
+quest_step = 0

@@ -1,6 +1,7 @@
 extends Area3D
 
-const quest_id: int = 0
+@export var quest_id: int = -1
+@export var quest_step: int = -1
 
 @onready var shape: CollisionShape3D = $CollisionShape3D
 @onready var fade_timer: Timer = $FadeTimer
