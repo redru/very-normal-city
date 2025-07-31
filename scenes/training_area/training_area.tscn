@@ -1,20 +1,85 @@
-[gd_scene load_steps=7 format=3 uid="uid://ww50x2hyyr6g"]
+[gd_scene load_steps=11 format=3 uid="uid://ww50x2hyyr6g"]
 
 [ext_resource type="Script" uid="uid://dsb605xu2uj2i" path="res://scenes/training_area/training_area.gd" id="1_5guir"]
-[ext_resource type="Shader" uid="uid://daw1ip13qpl24" path="res://scenes/training_area/training_area.gdshader" id="2_jqqnj"]
-[ext_resource type="PackedScene" uid="uid://d0ouuii7qc513" path="res://assets/kenney_prototype-kit/indicator-special-lines.glb" id="3_nvy62"]
+[ext_resource type="Shader" uid="uid://dpexjsph0lhyh" path="res://shaders/fade_out.gdshader" id="3_nvy62"]
+[ext_resource type="PackedScene" uid="uid://b3r4u2ulabr3m" path="res://assets/kenney_prototype-kit/indicator-round-c.glb" id="4_gwprj"]
+[ext_resource type="PackedScene" uid="uid://d2bode0jbwi1k" path="res://assets/kenney_prototype-kit/indicator-round-d.glb" id="5_jjwxv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5guir"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_5guir"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rvii1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gwprj"]
 render_priority = 0
-shader = ExtResource("2_jqqnj")
-shader_parameter/border_width = 0.15
-shader_parameter/blink_speed = 0.5
-shader_parameter/border_color = Color(0, 0.5, 1, 1)
-shader_parameter/border_intensity = 2.0
+shader = ExtResource("3_nvy62")
+shader_parameter/alpha = 1.0
+shader_parameter/color = Color(1, 1, 0.258824, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nvy62"]
+render_priority = 0
+shader = ExtResource("3_nvy62")
+shader_parameter/alpha = 1.0
+shader_parameter/color = Color(1, 1, 0.258824, 1)
+
+[sub_resource type="Animation" id="Animation_gwprj"]
+resource_name = "training-area"
+length = 7.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("indicator-round-c2:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("indicator-round-d2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jjwxv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("indicator-round-c2:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("indicator-round-d2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6pm1u"]
+_data = {
+&"RESET": SubResource("Animation_jjwxv"),
+&"training-area": SubResource("Animation_gwprj")
+}
 
 [node name="TrainingArea" type="Area3D"]
 collision_layer = 0
@@ -23,14 +88,34 @@ monitorable = false
 script = ExtResource("1_5guir")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_5guir")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_5guir")
-surface_material_override/0 = SubResource("ShaderMaterial_rvii1")
+[node name="indicator-round-c2" parent="." instance=ExtResource("4_gwprj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.121644, 0)
 
-[node name="indicator-special-lines2" parent="." instance=ExtResource("3_nvy62")]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
+[node name="rotate-y" parent="indicator-round-c2/indicator-round-c" index="0"]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 0, 0, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_gwprj")
+
+[node name="indicator-round-d2" parent="." instance=ExtResource("5_jjwxv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0.0596537, 0)
+
+[node name="rotate-y" parent="indicator-round-d2/indicator-round-d" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_nvy62")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6pm1u")
+}
+autoplay = "training-area"
+
+[node name="FadeTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="FadeTimer" to="." method="_on_fade_timer_timeout"]
+
+[editable path="indicator-round-c2"]
+[editable path="indicator-round-d2"]
